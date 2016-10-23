@@ -55,6 +55,9 @@ public class CheckoutBasketScenario_1 {
 ```
 The test result is completely assert (i.e. exception) based, all methods should return void (it does not matter if it returns something, but it wont be used). The test is now executable and can be run by Maven (`./mvwn verify`) or be your editor.
 
+#### TODO
+There is **no generation of a test result report yet**. This is the next priority.
+
 #### Why (long version)
 Modern projects often utilize behaviour driven design (BDD), a test practise where the business creates the tests together with the developers. 
 There are several available Java frameworks that supports these types of tests, for example:
