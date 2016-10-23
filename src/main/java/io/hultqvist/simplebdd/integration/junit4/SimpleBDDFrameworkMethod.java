@@ -1,20 +1,15 @@
 package io.hultqvist.simplebdd.integration.junit4;
 
+import static io.hultqvist.simplebdd.utils.Guards.notNull;
+
 import io.hultqvist.simplebdd.specifcation.Specification;
 import io.hultqvist.simplebdd.specifcation.SpecificationExecutor;
-import org.junit.runner.Description;
-import org.junit.runner.notification.Failure;
-import org.junit.runner.notification.RunNotifier;
-import org.junit.runners.model.FrameworkMethod;
-
 import java.lang.reflect.Method;
-
-import static io.hultqvist.simplebdd.utils.Guards.notNull;
+import org.junit.runners.model.FrameworkMethod;
 
 class SimpleBDDFrameworkMethod extends FrameworkMethod {
 
     private final Specification specification;
-    private RunNotifier notifier;
 
     SimpleBDDFrameworkMethod(final Specification specification) {
         super(noopMethod());
@@ -33,17 +28,7 @@ class SimpleBDDFrameworkMethod extends FrameworkMethod {
 
     @Override
     public Object invokeExplosively(final Object target, final Object... params) throws Throwable {
-        try {
-            new SpecificationExecutor().execute(target, specification);
-        } catch (Throwable throwable) {
-            notifier.fireTestFailure(new Failure(Description.createTestDescription(target.getClass(), "scenario"), throwable));
-        }
+        new SpecificationExecutor().execute(target, specification);
         return null;
-    }
-
-    void setNotifier(final RunNotifier notifier) {
-        notNull(notifier, "Run notifier cannot be null");
-
-        this.notifier = notifier;
     }
 }

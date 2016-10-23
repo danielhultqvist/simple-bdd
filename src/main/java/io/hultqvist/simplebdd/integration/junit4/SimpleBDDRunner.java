@@ -1,15 +1,13 @@
 package io.hultqvist.simplebdd.integration.junit4;
 
+import static io.hultqvist.simplebdd.specifcation.SpecificationExtractor.createSpecification;
+
 import io.hultqvist.simplebdd.specifcation.Specification;
-import org.junit.runner.notification.RunNotifier;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.runners.BlockJUnit4ClassRunner;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.InitializationError;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static io.hultqvist.simplebdd.specifcation.SpecificationExtractor.createSpecification;
 
 public class SimpleBDDRunner extends BlockJUnit4ClassRunner {
 
@@ -31,12 +29,6 @@ public class SimpleBDDRunner extends BlockJUnit4ClassRunner {
         final ArrayList<FrameworkMethod> frameworkMethods = new ArrayList<FrameworkMethod>();
         frameworkMethods.add(new SimpleBDDFrameworkMethod(specification));
         return frameworkMethods;
-    }
-
-    @Override
-    protected void runChild(final FrameworkMethod method, final RunNotifier notifier) {
-        ((SimpleBDDFrameworkMethod) method).setNotifier(notifier);
-        super.runChild(method, notifier);
     }
 
     @Override
