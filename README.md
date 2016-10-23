@@ -1,14 +1,14 @@
 # simple-bdd
 
-#### TL;DR
+## TL;DR
 Java BDD test framework with **3** required annotations only + runner, **no** additional text/html/md files needed whatsoever.
 Runs on JUnit 4 and >= Java 6.
 
-#### Why (short, long at end)
+## Why (short, long at end)
 Keep everything about your scenario in one place - your source code. Easy to maintain, no magic and still fulfills most use cases.
 Do you really need all that fancy advanced support/features that other frameworks provides?
 
-#### What/How
+## What/How
 This library consists of **3** required annotations and a test runner. The three annotations represents the Gherkin annotation
 * `@Given`
 * `@When`
@@ -16,7 +16,7 @@ This library consists of **3** required annotations and a test runner. The three
 
 These annotations are put on your test methods and will be executed by the simple-bdd runner. The test class is annotated `@RunWith(SimpleBDDRunner.class)` which executes the methods in the correct order.
 
-#### Example
+## Example
 Clone repository and run (this is needed until available on Maven Central)
 ```sh
 ./mvnw install
@@ -55,10 +55,10 @@ public class CheckoutBasketScenario_1 {
 ```
 The test result is completely assert (i.e. exception) based, all methods should return void (it does not matter if it returns something, but it wont be used). The test is now executable and can be run by Maven (`./mvwn verify`) or be your editor.
 
-#### TODO
+## TODO
 There is **no generation of a test result report yet**. This is the next priority.
 
-#### Why (long version)
+## Why (long version)
 Modern projects often utilize behaviour driven design (BDD), a test practise where the business creates the tests together with the developers. 
 There are several available Java frameworks that supports these types of tests, for example:
 * *Concordion*
