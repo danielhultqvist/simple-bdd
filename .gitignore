@@ -13,6 +13,7 @@ hs_err_pid*
 
 # editors
 .idea
+*.iml
 
 # dependency management
 target
