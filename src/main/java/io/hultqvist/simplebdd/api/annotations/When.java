@@ -15,5 +15,5 @@ import java.lang.annotation.*;
 public @interface When {
     String value();
 
-    int priority() default 0;
+    int priority() default Integer.MAX_VALUE;
 }
