@@ -1,17 +1,21 @@
 package io.hultqvist.simplebdd.specifcation;
 
+import static io.hultqvist.simplebdd.utils.Guards.notNull;
+
 import io.hultqvist.simplebdd.api.annotations.Given;
 import io.hultqvist.simplebdd.api.annotations.Then;
 import io.hultqvist.simplebdd.api.annotations.When;
-
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-import static io.hultqvist.simplebdd.utils.Guards.notNull;
-
 public class SpecificationExtractor {
 
+    /**
+     * Extract a specification based on @Given/@When/@Then annotations in target class
+     * @param klass Target test class which contains @Given/@When/@Then annotated methods
+     * @return Specification containing sorted Given/When/Then methods
+     */
     public static Specification createSpecification(final Class klass) {
         notNull(klass, "Class cannot be null");
 

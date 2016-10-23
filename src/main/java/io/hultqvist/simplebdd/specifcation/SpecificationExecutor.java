@@ -7,6 +7,12 @@ import java.lang.reflect.Method;
 
 public class SpecificationExecutor {
 
+    /**
+     * Executes a specification on a targeted test class instance
+     * @param testInstance Test instance which the @Given/@When/@Then should be invoked on
+     * @param specification Specification that contains @Given/@When/@Then
+     * @throws Throwable Throws the underlying exception which caused the test to fail
+     */
     public void execute(final Object testInstance, final Specification specification) throws Throwable {
         notNull(testInstance, "Test instance cannot be null");
         notNull(specification, "Specification cannot be null");
