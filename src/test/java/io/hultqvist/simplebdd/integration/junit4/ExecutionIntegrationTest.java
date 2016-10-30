@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(SimpleBDDRunner.class)
 public class ExecutionIntegrationTest {
@@ -39,6 +40,7 @@ public class ExecutionIntegrationTest {
     public void then_something_is_asserted() {
         assertEquals(3, executions.size());
         executions.add("THEN");
+        assertTrue(false);
     }
 
     @After

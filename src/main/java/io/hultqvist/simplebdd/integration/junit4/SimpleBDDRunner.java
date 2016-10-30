@@ -1,10 +1,15 @@
 package io.hultqvist.simplebdd.integration.junit4;
 
 import io.hultqvist.simplebdd.specifcation.Specification;
+import org.junit.ClassRule;
+import org.junit.Rule;
+import org.junit.rules.TestRule;
+import org.junit.runner.notification.RunListener;
 import org.junit.runner.notification.RunNotifier;
 import org.junit.runners.BlockJUnit4ClassRunner;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.InitializationError;
+import org.junit.runners.model.TestClass;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +19,10 @@ import static io.hultqvist.simplebdd.specifcation.SpecificationExtractor.createS
 public class SimpleBDDRunner extends BlockJUnit4ClassRunner {
 
     private final Specification specification;
+    private static List<String> testRun;
+
+    @ClassRule
+    public static final ScenarioReportRule writerRule = new ScenarioReportRule();
 
     public SimpleBDDRunner(final Class<?> fixtureClass) throws InitializationError {
         super(fixtureClass);
@@ -37,6 +46,13 @@ public class SimpleBDDRunner extends BlockJUnit4ClassRunner {
     protected void runChild(final FrameworkMethod method, final RunNotifier notifier) {
         ((SimpleBDDFrameworkMethod) method).setNotifier(notifier);
         super.runChild(method, notifier);
+    }
+
+    @Override
+    protected List<TestRule> classRules() {
+        final List<TestRule> testRules = super.classRules();
+        testRules.add(new ScenarioReportRule());
+        return testRules;
     }
 
     @Override

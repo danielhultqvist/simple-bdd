@@ -33,11 +33,7 @@ class SimpleBDDFrameworkMethod extends FrameworkMethod {
 
     @Override
     public Object invokeExplosively(final Object target, final Object... params) throws Throwable {
-        try {
-            new SpecificationExecutor().execute(target, specification);
-        } catch (Throwable throwable) {
-            notifier.fireTestFailure(new Failure(Description.createTestDescription(target.getClass(), "scenario"), throwable));
-        }
+        new SpecificationExecutor().execute(target, specification);
         return null;
     }
 
