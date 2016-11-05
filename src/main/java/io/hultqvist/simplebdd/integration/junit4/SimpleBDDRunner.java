@@ -5,6 +5,7 @@ import static io.hultqvist.simplebdd.specifcation.SpecificationExtractor.createS
 import io.hultqvist.simplebdd.specifcation.Specification;
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.rules.TestRule;
 import org.junit.runners.BlockJUnit4ClassRunner;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.InitializationError;
@@ -29,6 +30,13 @@ public class SimpleBDDRunner extends BlockJUnit4ClassRunner {
         final ArrayList<FrameworkMethod> frameworkMethods = new ArrayList<FrameworkMethod>();
         frameworkMethods.add(new SimpleBDDFrameworkMethod(specification));
         return frameworkMethods;
+    }
+
+    @Override
+    protected List<TestRule> getTestRules(Object target) {
+        final List<TestRule> testRules = super.getTestRules(target);
+        testRules.add(new ScenarioReportRule());
+        return testRules;
     }
 
     @Override
